@@ -1,0 +1,125 @@
+<ng-template [ngIf]="waitngForConfirmation" [ngIfElse]="emailNotSent">
+  <div class="main-content d-flex">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-9 align-self-center">
+      <div class="card  card-block alert alert-success">
+        <h3 [ngStyle]="{'text-align': 'center'}">Please, check your email to <strong>verify</strong> your account and complete the registration!</h3>
+      </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #emailNotSent>
+  <div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+      <div class="row justify-content-center align-items-center loginForm">
+        <form class="col-md-12 box" [formGroup]="formReg" (ngSubmit)="submit()">
+          <fieldset>
+            <legend [ngStyle]="{'text-align': 'center'}">Registration</legend>
+            <div class="form-group row">
+                <label for="username" class="control-label col-md-3"><b>Username:</b></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" formControlName="username">
+                    <small class="text-danger"  *ngIf="formReg.controls.username.touched && formReg.controls.username.errors?.required">
+                    This field can't be empty!</small>
+                </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="password" class="control-label col-md-3"><b>Password:</b></label>
+              <div class="col-md-9">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" formControlName="password">
+                <small class="text-danger"  *ngIf="formReg.controls.password.touched && formReg.controls.password.errors?.required">
+                  This field can't be empty!</small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="repeatedPassword" class="control-label col-md-3"><b>Repeat password:</b></label>
+                <div class="col-md-9">
+                  <input type="password" class="form-control" id="repeatedPassword" name="repeteadPassword" placeholder="Repet password" formControlName="repeatedPassword">
+                  <small class="text-danger"  *ngIf="formReg.controls.repeatedPassword.touched && formReg.controls.repeatedPassword.errors?.required">
+                    This field can't be empty!</small>
+                </div>
+              </div>
+
+            <div class="form-group row">
+              <label for="firstname" class="control-label col-md-3"><b>First name:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" formControlName="firstname">
+                <small class="text-danger"  *ngIf="formReg.controls.firstname.touched && formReg.controls.firstname.errors?.required">
+                  This field can't be empty!</small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="lastname" class="control-label col-md-3"><b>Last name:</b></label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" formControlName="lastname">
+                  <small class="text-danger"  *ngIf="formReg.controls.lastname.touched && formReg.controls.lastname.errors?.required">
+                    This field can't be empty!</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="control-label col-md-3"><b>E-mail:</b></label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="email" name="email" placeholder="E-mail" formControlName="email">
+                  <small class="text-danger"  *ngIf="formReg.controls.email.touched && formReg.controls.email.errors?.email">
+                    Invalid email format!</small>
+                  <small class="text-danger"  *ngIf="formReg.controls.email.touched && formReg.controls.email.errors?.required">
+                    This field can't be empty!</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phone" class="control-label col-md-3"><b>Phone number:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" formControlName="phone">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="websiteUrl" class="control-label col-md-3"><b>Website URL:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="websiteUrl" name="websiteUrl" placeholder="Website URL" formControlName="websiteUrl">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="sex" class="control-label col-md-3"><b>Sex:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="sex" name="sex" placeholder="Sex" formControlName="sex">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="biography" class="control-label col-md-3"><b>Biography:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="biography" name="biography" placeholder="Biography" formControlName="biography">
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="birthDate" class="control-label col-md-3"><b>Date of birth:</b></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Date of birth" formControlName="birthDate">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-9">
+                <button type="submit" class="btn btn-round" style="background-color: purple" [disabled]="!formReg.valid">Sign up</button>
+              </div>
+            </div>
+      
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-template>
