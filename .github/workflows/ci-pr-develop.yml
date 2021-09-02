@@ -1,7 +1,7 @@
 name: CI pr develop
 
 on:
-  push:
+  pull_request:
     branches:
       - 'develop'
     types: [opened, reopened, edited, synchronize] 
