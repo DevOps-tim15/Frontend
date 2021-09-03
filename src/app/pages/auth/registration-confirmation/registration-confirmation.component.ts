@@ -32,7 +32,7 @@ export class RegistrationConfirmationComponent implements OnInit {
 			result => {
         this.toastr.success('Successfull registration and verification! Now you can sign in.');
         setTimeout(()=>
-				this.router.navigate(['login']), 500)
+				this.router.navigate(['/login']), 500)
 			},
 			error => {
 				this.toastr.error(error.error);

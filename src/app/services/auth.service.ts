@@ -6,8 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-	private headers = new HttpHeaders({'Access-Control-Allow-Origin': '*',
-										'Access-Control-Allow-Credentials': 'true'});
+	private headers = new HttpHeaders({
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Credentials': 'true'});
   private baseUrl = "http://localhost:8080/api/auth/";
 	constructor(
 		private http: HttpClient
@@ -19,8 +21,8 @@ export class AuthService {
 	}
 
 	logout(): Observable<any> {
-		let logoutUrl = this.baseUrl + "logout";
-		return this.http.get(logoutUrl, {headers: this.headers, responseType: 'text'});
+		let logoutUrl = this.baseUrl + "signout";
+		return this.http.post(logoutUrl, null, {headers: this.headers, responseType: 'text'});
 	}
 
 	isLoggedIn(): boolean {
