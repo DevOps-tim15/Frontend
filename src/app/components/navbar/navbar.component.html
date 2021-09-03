@@ -7,9 +7,17 @@
     </div>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+    <ul class="navbar-nav ml-auto" *ngIf="!loggedIn()">
+        <li class="nav-item" >
             <a class="nav-link" [routerLink]="" (click)="register()">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="" (click)="login()">Login</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="loggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="" (click)="logout()">Logout</a>
         </li>
     </ul>
   </div>

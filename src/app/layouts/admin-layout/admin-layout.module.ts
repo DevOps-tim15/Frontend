@@ -9,6 +9,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RegistrationComponent } from "src/app/pages/auth/registration/registration.component";
 import { NistagramComponent } from "src/app/pages/nistagram/nistagram.component";
 import { RegistrationConfirmationComponent } from "src/app/pages/auth/registration-confirmation/registration-confirmation.component";
+import { LoginComponent } from "src/app/pages/auth/login/login.component";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { RegistrationConfirmationComponent } from "src/app/pages/auth/registrati
   declarations: [
     RegistrationComponent,
     NistagramComponent,
-    RegistrationConfirmationComponent
+    RegistrationConfirmationComponent,
+    LoginComponent
   ]
 })
 export class AdminLayoutModule {}
