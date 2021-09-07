@@ -109,9 +109,20 @@
               </div>
             </div>
 
+            <div class="form-group row">
+              <label for="birthDate" class="control-label col-md-3"><b>Can others tagg you on photos?</b></label>
+              <div class="col-md-1">
+                <input type="checkbox" class="form-control" id="canBeTagged" name="canBeTagged" formControlName="canBeTagged">
+              </div>
+              <div class="col-md-4"></div>
+              <label for="birthDate" class="control-label col-md-3"><b>Do you want your provile to be private?</b></label>
+              <div class="col-md-1">
+                <input type="checkbox" class="form-control" id="isPrivate" name="isPrivate" formControlName="isPrivate">
+              </div>
+            </div>
+
             <div class="row">
-              <div class="col-lg-3"></div>
-              <div class="col-lg-9">
+              <div class="col  text-center">
                 <button type="submit" class="btn btn-round" style="background-color: purple" [disabled]="!formReg.valid">Sign up</button>
               </div>
             </div>
