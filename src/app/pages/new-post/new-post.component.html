@@ -1,0 +1,65 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-8">
+            <div class=" card">
+                <div class=" card-header">
+                    <h5 class=" title">New post</h5>
+                </div>
+                <div class=" card-body">
+                    <form [formGroup]="uploadForm" (ngSubmit)="addNew()">
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label for="description"> Description </label>
+                                    <input class=" form-control" type="text" formControlName="description"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label for="userTags"> Tags: </label>
+                                    <type-ahead formControlName="userTags" type="text" [suggestions]="states"
+                                    class="form-control" [multi]="true"></type-ahead>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="col text-center">
+                                <div fxFlex="value%" fxFlexAlign="center"></div>
+                                <img  src={{imgFile}} alt="" id="img">
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class= "col"></div>
+                        </div>
+                        <div class=" row">
+                            <div class="col text-center">
+                                <div class="form-group">
+                                    <label class="image-upload-container btn btn-bwm">
+                                        <span>Select Image</span>
+                                        <input #imageInput
+                                               type="file"
+                                               accept="image/*"
+                                               (change)="onImageChange($event)"
+                                               >
+                                      </label>
+                                      <small  class="text-danger"  *ngIf="uploadForm.controls.picture.touched && uploadForm.controls.picture.errors?.required">
+                                        This field can't be empty!</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" card-footer">
+                            <div class= "row">
+                                <div class=" col text-center" style="align-content: center;">
+                                    <button class=" btn btn-fill btn-danger" [disabled]="!uploadForm.valid" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

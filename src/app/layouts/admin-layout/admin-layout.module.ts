@@ -3,6 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TypeaheadModule } from 'ngx-type-ahead';
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -10,6 +11,7 @@ import { RegistrationComponent } from "src/app/pages/auth/registration/registrat
 import { NistagramComponent } from "src/app/pages/nistagram/nistagram.component";
 import { RegistrationConfirmationComponent } from "src/app/pages/auth/registration-confirmation/registration-confirmation.component";
 import { LoginComponent } from "src/app/pages/auth/login/login.component";
+import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
 
 @NgModule({
   imports: [
@@ -18,13 +20,15 @@ import { LoginComponent } from "src/app/pages/auth/login/login.component";
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TypeaheadModule
   ],
   declarations: [
     RegistrationComponent,
     NistagramComponent,
     RegistrationConfirmationComponent,
-    LoginComponent
+    LoginComponent,
+    NewPostComponent
   ]
 })
 export class AdminLayoutModule {}

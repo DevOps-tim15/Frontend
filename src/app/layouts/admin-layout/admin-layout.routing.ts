@@ -4,6 +4,7 @@ import { LoginComponent } from "src/app/pages/auth/login/login.component";
 
 import { RegistrationConfirmationComponent } from "src/app/pages/auth/registration-confirmation/registration-confirmation.component";
 import { RegistrationComponent } from "src/app/pages/auth/registration/registration.component";
+import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
 import { NistagramComponent } from "src/app/pages/nistagram/nistagram.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -14,4 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     path: 'registration/confirmation/:token',
     component: RegistrationConfirmationComponent
   },  
+  { path: 'new-post', component: NewPostComponent}
 ];

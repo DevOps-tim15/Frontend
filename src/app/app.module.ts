@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
+import { TypeaheadModule } from 'ngx-type-ahead';
 
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
@@ -24,7 +25,8 @@ import { Interceptor } from "./interceptors/intercept.service";
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    TypeaheadModule
   ],
   declarations: [AppComponent, AdminLayoutComponent],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
