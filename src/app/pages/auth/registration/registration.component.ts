@@ -33,6 +33,8 @@ export class RegistrationComponent implements OnInit {
 			sex: [''],
 			biography: [''],
 			birthDate: [''],
+			canBeTagged: [false],
+			isPrivate: [false],
 	  });
   }
 
@@ -52,10 +54,12 @@ export class RegistrationComponent implements OnInit {
 	  user.lastName = this.formReg.value.lastname;
 	  user.email = this.formReg.value.email;
 	  user.phone = this.formReg.value.phone;
-	  user.websiteUrl = this.formReg.value.websiteUrl
-	  user.sex =  this.formReg.value.sex
-	  user.biography = this.formReg.value.biography
-	  user.birthDate = this.formReg.value.birthDate
+	  user.websiteUrl = this.formReg.value.websiteUrl;
+	  user.sex =  this.formReg.value.sex;
+	  user.biography = this.formReg.value.biography;
+	  user.birthDate = this.formReg.value.birthDate;
+	  user.canBeTagged = this.formReg.value.canBeTagged;
+	  user.isPrivate = this.formReg.value.isPrivate;
 	  console.log(user);
 	  this.authenticationService.register(user).subscribe(
 		  result => {
