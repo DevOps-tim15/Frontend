@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
+import {Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -13,18 +11,8 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class NewPostComponent implements OnInit {
 
-  states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
   imgFile: string;
-  public model: any;
-  tags:any[] = []
+  usersToTag:any[] = []
 
   uploadForm = this.fb.group({
     description: [''],
@@ -35,10 +23,7 @@ export class NewPostComponent implements OnInit {
   constructor(private fb: FormBuilder, private postService: PostService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
-  }
-  addTag(r){
-    this.tags.push(r);
-    alert(this.model);
+    this.getAllUsersForTagging();
   }
 
   addNew() {
@@ -54,7 +39,19 @@ export class NewPostComponent implements OnInit {
     this.postService.uploadPost(post).subscribe(
       post => {
         this.toastr.success('You have successfully uploaded a new photo');
-        this.router.navigate(['/nistagram']);
+        this.router.navigate(['/user-posts']);
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  getAllUsersForTagging() {
+    this.postService.getAllUsersForTagging().subscribe(
+      users => {
+        this.usersToTag = users;
+        console.log(users)
       },
       error => {
         this.toastr.error(error.error);
@@ -74,7 +71,6 @@ export class NewPostComponent implements OnInit {
         this.uploadForm.patchValue({
           picture: reader.result
         });
-        // this.imgFile = 
         console.log(this.uploadForm.get('picture').value);
         console.log(this.imgFile);
       };

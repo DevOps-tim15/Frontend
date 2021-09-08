@@ -12,6 +12,7 @@ import { NistagramComponent } from "src/app/pages/nistagram/nistagram.component"
 import { RegistrationConfirmationComponent } from "src/app/pages/auth/registration-confirmation/registration-confirmation.component";
 import { LoginComponent } from "src/app/pages/auth/login/login.component";
 import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
+import { UserPostsComponent } from "src/app/pages/user-posts/user-posts.component";
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
     NistagramComponent,
     RegistrationConfirmationComponent,
     LoginComponent,
-    NewPostComponent
+    NewPostComponent,
+    UserPostsComponent
   ]
 })
 export class AdminLayoutModule {}
