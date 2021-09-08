@@ -16,6 +16,21 @@
         </li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="loggedIn()">
+      <li class=" search-bar input-group">
+        <button
+          class=" btn btn-link"
+          data-target="#searchModal"
+          data-toggle="modal"
+          (click)="open(content)"
+          id="search-button"
+        >
+          <i class=" tim-icons icon-zoom-split"> </i>
+          <span class=" d-lg-none d-md-block"> Search </span>
+        </button>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="" (click)="newPost()"><i class="tim-icons icon-simple-add"> </i></a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="" (click)="logout()">Logout</a>
         </li>
