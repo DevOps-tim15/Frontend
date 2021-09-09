@@ -40,4 +40,14 @@ export class PostService {
 		let postUrl = this.baseUrl + "postsToView";
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
+
+	like(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "like/" + postId;
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	dislike(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "dislike/" + postId;
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
 }

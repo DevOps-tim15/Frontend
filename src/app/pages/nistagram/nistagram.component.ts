@@ -58,4 +58,30 @@ export class NistagramComponent implements OnInit {
     }
   }
 
+  like(postId) {
+    this.postService.like(postId).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        console.log(this.posts);
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  dislike(postId) {
+    this.postService.dislike(postId).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        console.log(this.posts);
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
 }
