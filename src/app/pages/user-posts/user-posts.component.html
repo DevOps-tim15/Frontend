@@ -6,25 +6,28 @@
             <img class="card-img-top embed-responsive-item" src={{post.image}} alt="Card image cap">
           </div>
           <div class="card-body">
+            <h5 class="card-title">User: {{post.username}}</h5>
             <h5 class="card-title">Description: {{post.description}}</h5>
             <h5 class="card-title">Tagged users: <type-ahead [(ngModel)]="post.taggedUsers" [disabled] = "true"
                 class="form-control" [custom]="false" [multi]="true"></type-ahead></h5>
-            <h5 class="card-title">Likes: 20 &nbsp; &nbsp;  Dislikes: 30 &nbsp; &nbsp; Comments: 2</h5>
+                <h5 class="card-title">Likes: {{post.likes}} &nbsp; &nbsp;  Dislikes: {{post.dislikes}} &nbsp; &nbsp; Comments: 2</h5>
     
-            <div class=" row">
-              <div>
-                <button type="button" class="btn btn-block btn-success" >Like</button>
-              </div>
-              <div>
-                <button type="button" class="btn btn-block btn-success" >Dislike</button>
-              </div>
-              <div>
-                <button type="button" class="btn btn-block btn-success" >Save</button>
-              </div>
-              <div>
-                <button type="button" class="btn btn-block btn-success" >Report</button>
-              </div>
-            </div>
+                <div class=" row">
+                  <div>
+                    <button type="button" class="btn btn-block btn-success" [disabled]="disabled || !post.canBeLiked"
+                    (click)="like(post.postId)">Like</button>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-block btn-success" [disabled]="disabled || !post.canBeDisliked" 
+                    (click)="dislike(post.postId)">Dislike</button>
+                  </div>
+                  <!-- <div>
+                    <button type="button" class="btn btn-block btn-success" >Save</button>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-block btn-success" >Report</button>
+                  </div> -->
+                </div>
           </div>
         </div>
       </div>

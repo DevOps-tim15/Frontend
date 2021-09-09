@@ -30,6 +30,9 @@ export class NewPostComponent implements OnInit {
     let description: string = this.uploadForm.get('description').value;
     let image: string = this.uploadForm.get('picture').value;
     let taggedUsers: [] = this.uploadForm.get('userTags').value;
+    if (this.uploadForm.get('userTags').value == null) {
+      taggedUsers = []
+    }
     let post = {
       description: description,
       image: image,
