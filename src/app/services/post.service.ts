@@ -30,4 +30,14 @@ export class PostService {
 		let postUrl = this.baseUrl + "userPosts";
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
+
+	getAllPostsFromPublicUsers(): Observable<any> {
+		let postUrl = this.baseUrl + "publicUsers";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	getAllPostsToView(): Observable<any> {
+		let postUrl = this.baseUrl + "postsToView";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
 }
