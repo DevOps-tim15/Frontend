@@ -153,6 +153,19 @@ export class NistagramComponent implements OnInit {
     )
   }
 
+  report(postId) {
+    this.postService.report(postId).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        this.toastr.success('Successfully reported!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
   getPath() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === "#") {
