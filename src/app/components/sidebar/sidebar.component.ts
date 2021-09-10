@@ -22,7 +22,13 @@ export const ROUTES: RouteInfo[] = [
   {
     path: "/liked-disliked",
     title: "Liked and disliked posts",
-    icon: "icon-bullet-list-67",
+    icon: "icon-heart-2",
+    class: ""
+  },
+  {
+    path: "/saved-posts",
+    title: "Saved posts",
+    icon: "icon-shape-star",
     class: ""
   }
 ];
