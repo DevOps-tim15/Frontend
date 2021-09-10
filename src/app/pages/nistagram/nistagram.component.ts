@@ -82,9 +82,27 @@ export class NistagramComponent implements OnInit {
             return null;
           } 
           break;
+          case "/saved-posts":
+            if (this.isLoggedIn()) {
+              this.disabled = false;
+              this.postService.getAllSavedPosts().subscribe(
+                posts => {
+                  this.posts = posts;
+                  console.log(posts);
+                },
+                error => {
+                  this.toastr.error(error.error);
+                }
+              );
+            } else {
+              return null;
+            } 
+            break;    
       default:
         break;
+      
     }
+      
   }
 
   isLoggedIn() {
@@ -111,6 +129,19 @@ export class NistagramComponent implements OnInit {
 
   dislike(postId) {
     this.postService.dislike(postId).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        console.log(this.posts);
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  save(postId) {
+    this.postService.save(postId).subscribe(
       post => {
         var foundIndex = this.posts.findIndex(x => x.postId == postId);
         this.posts[foundIndex] = post

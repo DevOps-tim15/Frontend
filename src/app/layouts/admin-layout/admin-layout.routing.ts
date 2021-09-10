@@ -20,5 +20,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'new-post', component: NewPostComponent,
   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
   { path: 'user-posts', component: NistagramComponent,
+   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
+   { path: 'saved-posts', component: NistagramComponent,
    data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }}
 ];
