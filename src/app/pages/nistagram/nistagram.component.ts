@@ -15,6 +15,9 @@ export class NistagramComponent implements OnInit {
 
   posts:any[] = []
   disabled = true;
+  uploadForm = this.fb.group({
+    comment: [''],
+  }); 
 
   constructor(private fb: FormBuilder, private postService: PostService, private toastr: ToastrService, private router: Router, 
     private authService: AuthService, private location: Location) { }
@@ -173,6 +176,23 @@ export class NistagramComponent implements OnInit {
     }
     this.getPosts(titlee);
     
+  }
+
+  commentPost(postId) {
+    let comment = {
+      postId: postId,
+      text: this.uploadForm.get('comment').value
+    }
+    this.postService.uploadComment(comment).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        this.toastr.success('Successfully commented!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
   }
 
 }

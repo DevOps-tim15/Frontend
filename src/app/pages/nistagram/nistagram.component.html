@@ -10,7 +10,7 @@
             <h5 class="card-title">Description: {{post.description}}</h5>
             <h5 class="card-title">Tagged users: <type-ahead [(ngModel)]="post.taggedUsers" [disabled] = "true"
                 class="form-control" [custom]="false" [multi]="true"></type-ahead></h5>
-            <h5 class="card-title">Likes: {{post.likes}} &nbsp; &nbsp;  Dislikes: {{post.dislikes}} &nbsp; &nbsp; Comments: 2</h5>
+            <h5 class="card-title">Likes: {{post.likes}} &nbsp; &nbsp;  Dislikes: {{post.dislikes}} &nbsp; &nbsp; Comments: {{post.comments.length}}</h5>
     
             <div class=" row">
               <div>
@@ -30,6 +30,26 @@
                 (click)="report(post.postId)">Report</button>
               </div>
             </div>
+            <div class=" row">
+                <div class=" col-md-12">
+                  <div class=" form-group">
+                    <h5 class="card-title">Comment</h5>
+                    <form [formGroup]="uploadForm" (ngSubmit)="commentPost(post.postId)">
+                        <textarea 
+                        class=" form-control input-sm"
+                        name="comment"
+                        cols="80"
+                        placeholder="Here can be your comment"
+                        rows="4"
+                        type = "text"
+                        formControlName="comment"
+                      >
+                       </textarea>
+                       <button class=" btn btn-fill btn-danger" [disabled]="disabled" type = "submit">Send comment</button>
+                    </form>
+                  </div>
+                </div>              
+              </div>
           </div>
         </div>
       </div>
