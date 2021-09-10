@@ -25,6 +25,10 @@
                 <button type="button" class="btn btn-block btn-success" [disabled]="disabled || !post.canBeSaved" 
                 (click)="save(post.postId)">Save</button>
               </div>
+              <div>
+                <button type="button" class="btn btn-block btn-success" [disabled]="disabled || !post.canBeReported" 
+                (click)="report(post.postId)">Report</button>
+              </div>
             </div>
           </div>
         </div>
