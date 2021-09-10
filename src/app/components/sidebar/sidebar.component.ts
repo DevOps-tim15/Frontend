@@ -19,6 +19,12 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-bullet-list-67",
     class: ""
   },
+  {
+    path: "/liked-disliked",
+    title: "Liked and disliked posts",
+    icon: "icon-bullet-list-67",
+    class: ""
+  }
 ];
 
 @Component({

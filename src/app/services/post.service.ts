@@ -50,4 +50,9 @@ export class PostService {
 		let postUrl = this.baseUrl + "dislike/" + postId;
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
+
+	getAllLikedAndDisliked(): Observable<any> {
+		let postUrl = this.baseUrl + "likedAndDisliked";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
 }
