@@ -31,12 +31,6 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-shape-star",
     class: ""
   },
-  {
-    path: "/edit-profile",
-    title: "Edit profile",
-    icon: "icon-pencil",
-    class: "",
-  }
 ];
 
 @Component({

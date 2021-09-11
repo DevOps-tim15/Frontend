@@ -91,7 +91,6 @@ export class EditProfileComponent implements OnInit {
           localStorage.removeItem('user');
           localStorage.setItem('user', result);
         }
-        this.router.navigate(['/nistagram']);
 		  },
       error => {
 			  console.log(error);

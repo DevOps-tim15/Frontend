@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { LoginGuard } from "src/app/guards/login.service";
+import { RoleGuard } from "src/app/guards/role.service";
 import { LoginComponent } from "src/app/pages/auth/login/login.component";
 
 import { RegistrationConfirmationComponent } from "src/app/pages/auth/registration-confirmation/registration-confirmation.component";
@@ -13,17 +14,22 @@ export const AdminLayoutRoutes: Routes = [
   { path: "register", component: RegistrationComponent,  canActivate: [LoginGuard]},  
   { path: "nistagram", component: NistagramComponent },
   { path: "liked-disliked", component: NistagramComponent,
-  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
+  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+  canActivate: [RoleGuard]},
   { path: "edit-profile", component: EditProfileComponent,
-  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
+  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+  canActivate: [RoleGuard]},
   {
     path: 'registration/confirmation/:token',
     component: RegistrationConfirmationComponent
   },  
   { path: 'new-post', component: NewPostComponent,
-  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
+  data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+  canActivate: [RoleGuard]},
   { path: 'user-posts', component: NistagramComponent,
-   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }},
+   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+   canActivate: [RoleGuard]},
    { path: 'saved-posts', component: NistagramComponent,
-   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' }}
+   data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+   canActivate: [RoleGuard]}
 ];
