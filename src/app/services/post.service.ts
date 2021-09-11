@@ -79,6 +79,10 @@ export class PostService {
 	reportedPosts(): Observable<any> {
 		let postUrl = this.baseUrl + "reported";
 		return this.http.get(postUrl, { headers: this.headers }); 
+	}
 
+	removePost(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "remove/" + postId;
+		return this.http.delete(postUrl, { headers: this.headers }); 
 	}
 }
