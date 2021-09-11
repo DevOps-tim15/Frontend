@@ -65,4 +65,14 @@ export class PostService {
 		let postUrl = this.baseUrl + "allSaved";
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
+
+	report(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "report/" + postId;
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	uploadComment(comment: any): Observable<any> {
+		let postUrl = this.baseUrl + "comment";
+		return this.http.post(postUrl, comment, { headers: this.headers });
+	}
 }

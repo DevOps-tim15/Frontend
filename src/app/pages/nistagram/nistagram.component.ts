@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { AuthService } from "src/app/services/auth.service";
 import { Location } from "@angular/common";
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nistagram',
@@ -15,9 +16,14 @@ export class NistagramComponent implements OnInit {
 
   posts:any[] = []
   disabled = true;
+  uploadForm = this.fb.group({
+    comment: [''],
+  }); 
+  closeModal: string;
+  comments:any[] = [];
 
   constructor(private fb: FormBuilder, private postService: PostService, private toastr: ToastrService, private router: Router, 
-    private authService: AuthService, private location: Location) { }
+    private authService: AuthService, private location: Location, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getPath();
@@ -153,6 +159,19 @@ export class NistagramComponent implements OnInit {
     )
   }
 
+  report(postId) {
+    this.postService.report(postId).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        this.toastr.success('Successfully reported!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
   getPath() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === "#") {
@@ -162,4 +181,39 @@ export class NistagramComponent implements OnInit {
     
   }
 
+  commentPost(postId) {
+    let comment = {
+      postId: postId,
+      text: this.uploadForm.get('comment').value
+    }
+    this.postService.uploadComment(comment).subscribe(
+      post => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts[foundIndex] = post
+        this.toastr.success('Successfully commented!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  allComments(content, postId) {
+    var foundIndex = this.posts.findIndex(x => x.postId == postId);
+    this.comments = this.posts[foundIndex].comments
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeModal = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 }

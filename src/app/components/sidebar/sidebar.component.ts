@@ -27,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/saved-posts",
-    title: "Saved posts",
+    title: "Favourites",
     icon: "icon-shape-star",
     class: ""
   },
