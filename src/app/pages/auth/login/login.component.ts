@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 				this.toastr.success('Login successfull!');
 				localStorage.setItem('user', result);
 				console.log(result);
+				window.location.reload();
 				this.router.navigate(['/nistagram']);
 			},
 			error => {

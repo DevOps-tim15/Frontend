@@ -15,7 +15,7 @@
                     <a class="nav-link" [routerLink]="" (click)="allComments(mymodal, post.postId)">
                         <h5 class="card-title">Comments: {{post.comments.length}}</h5>
                     </a>
-                    <div class=" row">
+                    <div class=" row" *ngIf="!admin; else adminButtons">
                         <div>
                             <button type="button" class="btn btn-block btn-success"
                                 [disabled]="disabled || !post.canBeLiked" (click)="like(post.postId)">Like</button>
@@ -35,7 +35,15 @@
                                 (click)="report(post.postId)">Report</button>
                         </div>
                     </div>
-                    <div class=" row">
+                    <ng-template #adminButtons>
+                        <div class = "row">
+                            <div>
+                                <button type="button" class="btn btn-block btn-danger"
+                                    [disabled]="disabled || !admin">Remove</button>
+                            </div>
+                        </div>
+                      </ng-template>
+                    <div class=" row"  *ngIf="!admin">
                         <div class=" col-md-12">
                             <div class=" form-group">
                                 <h5 class="card-title">Comment</h5>
@@ -44,7 +52,7 @@
                                         placeholder="Here can be your comment" rows="4" type="text"
                                         formControlName="comment">
                        </textarea>
-                                    <button class=" btn btn-fill btn-danger" [disabled]="disabled" type="submit">Send
+                                    <button class=" btn btn-fill btn-danger" [disabled]="disabled || admin" type="submit">Send
                                         comment</button>
                                 </form>
                             </div>

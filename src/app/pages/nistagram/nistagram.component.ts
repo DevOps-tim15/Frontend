@@ -16,6 +16,7 @@ export class NistagramComponent implements OnInit {
 
   posts:any[] = []
   disabled = true;
+  admin = false;
   uploadForm = this.fb.group({
     comment: [''],
   }); 
@@ -32,7 +33,7 @@ export class NistagramComponent implements OnInit {
   getPosts(title: string) {
     switch (title) {
       case "/nistagram":
-        if (this.isLoggedIn()) {
+        if (this.isLoggedIn() && !this.isAdmin()) {
           this.disabled = false;
           this.postService.getAllPostsToView().subscribe(
             posts => {
@@ -103,7 +104,24 @@ export class NistagramComponent implements OnInit {
             } else {
               return null;
             } 
-            break;    
+            break;  
+            case "/reported-posts":
+            if (this.isLoggedIn()) {
+              this.disabled = false;
+              this.admin = true;
+              this.postService.reportedPosts().subscribe(
+                posts => {
+                  this.posts = posts;
+                  console.log(posts);
+                },
+                error => {
+                  this.toastr.error(error.error);
+                }
+              );
+            } else {
+              return null;
+            } 
+            break;  
       default:
         break;
       
@@ -118,6 +136,10 @@ export class NistagramComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  isAdmin() {
+    return this.authService.getRole() === "ROLE_ADMIN";
   }
 
   like(postId) {

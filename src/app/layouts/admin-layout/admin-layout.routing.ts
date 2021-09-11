@@ -31,5 +31,8 @@ export const AdminLayoutRoutes: Routes = [
    canActivate: [RoleGuard]},
    { path: 'saved-posts', component: NistagramComponent,
    data: { expectedRoles: 'ROLE_REGISTERED_USER|ROLE_AGENT' },
+   canActivate: [RoleGuard]},
+   { path: 'reported-posts', component: NistagramComponent,
+   data: { expectedRoles: 'ROLE_ADMIN' },
    canActivate: [RoleGuard]}
 ];

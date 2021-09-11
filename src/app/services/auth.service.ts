@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,18 @@ export class AuthService {
 				return true;
 		}
 		return false;
+	}
+
+	getRole(): string {
+		const token = localStorage.getItem('user');
+		const jwt: JwtHelperService = new JwtHelperService();
+
+		if (!token) {
+			return "";
+		}
+
+		const info = jwt.decodeToken(token);
+		return info.role;
 	}
 
 	register(user: any): Observable<any> {

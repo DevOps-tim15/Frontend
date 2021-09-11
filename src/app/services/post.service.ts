@@ -75,4 +75,10 @@ export class PostService {
 		let postUrl = this.baseUrl + "comment";
 		return this.http.post(postUrl, comment, { headers: this.headers });
 	}
+
+	reportedPosts(): Observable<any> {
+		let postUrl = this.baseUrl + "reported";
+		return this.http.get(postUrl, { headers: this.headers }); 
+
+	}
 }
