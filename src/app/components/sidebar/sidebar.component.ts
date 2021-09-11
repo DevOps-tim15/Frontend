@@ -30,7 +30,7 @@ export const ROUTES: RouteInfo[] = [
     title: "Favourites",
     icon: "icon-shape-star",
     class: ""
-  }
+  },
 ];
 
 @Component({

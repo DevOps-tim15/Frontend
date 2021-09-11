@@ -77,4 +77,8 @@ export class NavbarComponent implements OnInit {
   newPost(){
     this.router.navigate(['/new-post']);
   }
+
+  editProfile(){
+    this.router.navigate(['/edit-profile']);
+  }
 }
