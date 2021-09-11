@@ -30,6 +30,12 @@ export const ROUTES: RouteInfo[] = [
     title: "Saved posts",
     icon: "icon-shape-star",
     class: ""
+  },
+  {
+    path: "/edit-profile",
+    title: "Edit profile",
+    icon: "icon-pencil",
+    class: "",
   }
 ];
 

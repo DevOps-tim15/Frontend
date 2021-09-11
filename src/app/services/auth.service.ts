@@ -37,8 +37,18 @@ export class AuthService {
 		return this.http.post(registrationUrl, user, {headers: this.headers, responseType: 'json'});
 	}
 
+	update(user: any): Observable<any> {
+		let registrationUrl =  this.baseUrl + "update";
+		return this.http.put(registrationUrl, user, {headers: this.headers, responseType: 'text'});
+	}
+
 	confirmRegistration(token: string): Observable<any> {
 		let confirmationUrl = this.baseUrl+ "confirm/" + token;
 		return this.http.post(confirmationUrl, {headers: this.headers, responseType: 'json'});
+	}
+
+	getLoggedIn(): Observable<any> {
+		let editUrl = this.baseUrl + "getLoggedIn";
+		return this.http.post(editUrl, null, {headers: this.headers, responseType: 'json'});
 	}
 }
