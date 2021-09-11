@@ -41,6 +41,10 @@
                                 <button type="button" class="btn btn-block btn-danger"
                                     [disabled]="disabled || !admin" (click)="remove(post.postId)">Remove post</button>
                             </div>
+                            <div>
+                                <button type="button" class="btn btn-block btn-danger"
+                                    [disabled]="disabled || !admin" (click)="removeAccount(post)">Remove account</button>
+                            </div>
                         </div>
                       </ng-template>
                     <div class=" row"  *ngIf="!admin">
