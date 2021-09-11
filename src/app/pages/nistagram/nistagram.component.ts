@@ -238,4 +238,16 @@ export class NistagramComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+  remove(postId) {
+    this.postService.removePost(postId).subscribe(
+      id => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts.splice(foundIndex, 1);
+        this.toastr.success('Successfully removed post!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
 }
