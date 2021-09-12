@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post.service';
 import { AuthService } from "src/app/services/auth.service";
 import { Location } from "@angular/common";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nistagram',
@@ -28,11 +29,7 @@ export class NistagramComponent implements OnInit {
   user : any;
 
   constructor(private fb: FormBuilder, private postService: PostService, private toastr: ToastrService, private router: Router, 
-    private authService: AuthService, private location: Location, private modalService: NgbModal) {
-      this.router.routeReuseStrategy.shouldReuseRoute = function() {
-        return false;
-    };
-     }
+    private authService: AuthService, private location: Location, private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getPath();
@@ -285,5 +282,31 @@ export class NistagramComponent implements OnInit {
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigate(['/profile', profileUsername]);
     }
+  }
+  remove(postId) {
+    this.postService.removePost(postId).subscribe(
+      id => {
+        var foundIndex = this.posts.findIndex(x => x.postId == postId);
+        this.posts.splice(foundIndex, 1);
+        this.toastr.success('Successfully removed post!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  removeAccount(post) {
+    this.userService.removeAccount(post.username).subscribe(
+      id => {
+        this.posts = this.posts.filter(x => x.username !== post.username)
+        // var foundIndex = this.posts.findIndex(x => x.postId == id);
+        // this.posts.splice(foundIndex, 1);
+        this.toastr.success('Successfully removed account!');
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
   }
 }
