@@ -1,0 +1,17 @@
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+
+@Component({
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
+})
+export class ProfileComponent implements OnInit{
+
+  @Input() user: any;
+  constructor() {}
+
+  ngOnInit(): void {
+    
+  }
+
+}

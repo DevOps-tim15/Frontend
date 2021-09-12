@@ -1,4 +1,19 @@
 <div class=" content">
+    <app-profile *ngIf="showProfile" [user]= "user.user"></app-profile>
+    <div class="card" *ngIf="showProfile">
+        <div class=" row" style="margin-top: 25px;">
+            <div class=" col-lg-6">
+                <div class=" card card-chart" style="width: 30rem;">
+                <button class="btn btn-info btn-block" [ngClass]="{'btn-link': showTaggedPhotos}" (click)="setPostedPhotos()">User's Photos</button>
+                </div>
+            </div>
+            <div class=" col-lg-6">
+                <div class=" card card-chart" style="width: 30rem;">
+                <button class="btn btn-info btn-block" [ngClass]="{'btn-link': !showTaggedPhotos}" (click)="setTagedPhotos()">Tagged Photos</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class=" row">
         <div class=" col-lg-6" *ngFor="let post of posts">
             <div class=" card card-chart" style="width: 30rem;">
@@ -15,7 +30,7 @@
                     <a class="nav-link" [routerLink]="" (click)="allComments(mymodal, post.postId)">
                         <h5 class="card-title">Comments: {{post.comments.length}}</h5>
                     </a>
-                    <div class=" row" *ngIf="!admin; else adminButtons">
+                    <div class="row d-flex justify-content-around" *ngIf="!admin; else adminButtons">
                         <div>
                             <button type="button" class="btn btn-block btn-success"
                                 [disabled]="disabled || !post.canBeLiked" (click)="like(post.postId)">Like</button>
@@ -47,6 +62,10 @@
                             </div>
                         </div>
                       </ng-template>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-block btn-success"
+                            (click)="viewProfile(post.username)">View Profile</button>
+                    </div>
                     <div class=" row"  *ngIf="!admin">
                         <div class=" col-md-12">
                             <div class=" form-group">
