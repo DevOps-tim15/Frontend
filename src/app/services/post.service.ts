@@ -26,6 +26,11 @@ export class PostService {
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
 
+	getAllUsersForSearch(): Observable<any> {
+		let postUrl = this.baseUrl + "forSearch";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
 	getAllPostsByUser():  Observable<any> {
 		let postUrl = this.baseUrl + "userPosts";
 		return this.http.get(postUrl, { headers: this.headers }); 
@@ -78,6 +83,12 @@ export class PostService {
 
 	reportedPosts(): Observable<any> {
 		let postUrl = this.baseUrl + "reported";
+		return this.http.get(postUrl, { headers: this.headers }); 
+
+	}
+
+	search(username:string): Observable<any> {
+		let postUrl = this.baseUrl + "search/" + username;
 		return this.http.get(postUrl, { headers: this.headers }); 
 
 	}

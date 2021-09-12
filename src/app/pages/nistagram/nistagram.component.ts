@@ -17,14 +17,22 @@ export class NistagramComponent implements OnInit {
   posts:any[] = []
   disabled = true;
   admin = false;
+  showProfile = false;
+  showTaggedPhotos = false;
+  searchTerm:string;
   uploadForm = this.fb.group({
     comment: [''],
   }); 
   closeModal: string;
   comments:any[] = [];
+  user : any;
 
   constructor(private fb: FormBuilder, private postService: PostService, private toastr: ToastrService, private router: Router, 
-    private authService: AuthService, private location: Location, private modalService: NgbModal) { }
+    private authService: AuthService, private location: Location, private modalService: NgbModal) {
+      this.router.routeReuseStrategy.shouldReuseRoute = function() {
+        return false;
+    };
+     }
 
   ngOnInit(): void {
     this.getPath();
@@ -121,6 +129,21 @@ export class NistagramComponent implements OnInit {
             } else {
               return null;
             } 
+            break; 
+            case "/profile":
+            {      
+              this.postService.search(this.searchTerm).subscribe(
+                user => {
+                  console.log(user); 
+                  this.user = user;
+                  this.showProfile = true;
+                  this.posts = user.postedPhotos;
+                },
+                error => {
+                  this.toastr.error(error.error);
+                }
+              )
+            }              
             break;  
       default:
         break;
@@ -199,6 +222,11 @@ export class NistagramComponent implements OnInit {
     if (titlee.charAt(0) === "#") {
       titlee = titlee.slice(1);
     }
+    if(titlee.indexOf("profile") !== -1){
+      this.searchTerm = titlee.substring(9);
+      titlee = titlee.substring(0,8);
+
+    }
     this.getPosts(titlee);
     
   }
@@ -236,6 +264,26 @@ export class NistagramComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return  `with: ${reason}`;
+    }
+  }
+
+  setTagedPhotos(){
+    this.posts = this.user.taggedPhotos;
+    this.showTaggedPhotos = true;
+  }
+
+  setPostedPhotos(){
+    this.posts = this.user.postedPhotos;
+    this.showTaggedPhotos = false;
+  }
+
+  viewProfile(profileUsername){
+    if(profileUsername !== null){
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+      }
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['/profile', profileUsername]);
     }
   }
 }

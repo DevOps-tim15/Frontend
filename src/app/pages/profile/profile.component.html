@@ -1,0 +1,23 @@
+<div class=" row  align-items-center">
+    <div class=" col text-center" style="align-content: center;">
+        <div class="card-title">Profile</div>
+        <div class="card">
+            <h2 style="text-align: center;">{{user.firstName}} {{user.lastName}}</h2>
+            <h3 style="text-align: center;">@{{user.username}}</h3>
+            <p *ngIf="user.websiteUrl" style="text-align: center;">Website URL: {{user.websiteUrl}}</p>
+            <p *ngIf="user.sex" style="text-align: center;">Sex: {{user.sex}}</p>
+            <p *ngIf="user.birthDate" style="text-align: center;">Birth Date: {{user.birthDate}}</p>
+            <p *ngIf="user.biography" style="text-align: center;">Biography: {{user.biography}}</p>
+            <div class="card-body">
+            <ng-container *ngIf="user.isFollowing; else elseTemplate">
+                <button class="btn">Unfollow</button>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <button class="btn">Follow</button>
+            </ng-template>
+            <button class="btn">Mute</button>
+            <button class="btn">Block</button>
+            </div>
+        </div>
+    </div>
+</div>

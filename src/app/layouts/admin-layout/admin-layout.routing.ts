@@ -8,6 +8,7 @@ import { RegistrationComponent } from "src/app/pages/auth/registration/registrat
 import { EditProfileComponent } from "src/app/pages/edit-profile/edit-profile.component";
 import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
 import { NistagramComponent } from "src/app/pages/nistagram/nistagram.component";
+import { ProfileComponent } from "src/app/pages/profile/profile.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "login", component: LoginComponent,canActivate: [LoginGuard] },  
@@ -34,5 +35,6 @@ export const AdminLayoutRoutes: Routes = [
    canActivate: [RoleGuard]},
    { path: 'reported-posts', component: NistagramComponent,
    data: { expectedRoles: 'ROLE_ADMIN' },
-   canActivate: [RoleGuard]}
+   canActivate: [RoleGuard]},
+   {path: 'profile/:username', component: NistagramComponent}
 ];
