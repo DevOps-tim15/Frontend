@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
 		this.authService.logout().subscribe(
 			result => {
 				localStorage.removeItem('user');
-				this.router.navigate(['/login']);
+				window.location.href="http://localhost:4200/#/login"
         window.location.reload();
 			},
 			error => {

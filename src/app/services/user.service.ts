@@ -25,4 +25,9 @@ export class UserService {
 		let userUrl = this.baseUrl + "follow/" + username;
 		return this.http.get(userUrl, { headers: this.headers }) ;
 	}
+
+  blockUser(username: string): Observable<any> {
+	let userUrl = this.baseUrl + "block/" + username;
+	return this.http.post(userUrl, { headers: this.headers}); 	
+	}
 }
