@@ -50,4 +50,19 @@ export class UserService {
 		let userUrl = this.baseUrl + "removeRequest/" + username;
 		return this.http.get(userUrl, { headers: this.headers });
 	}
+
+	getAllRequests(): Observable<any> {
+		let userUrl = this.baseUrl + "requests";
+		return this.http.get(userUrl, { headers: this.headers });
+	}
+
+	acceptRequest(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "accept/" + username;
+		return this.http.get(userUrl, { headers: this.headers });
+	}
+
+	declineRequest(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "decline/" + username;
+		return this.http.get(userUrl, { headers: this.headers });
+	}
 }

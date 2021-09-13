@@ -14,6 +14,7 @@ import { LoginComponent } from "src/app/pages/auth/login/login.component";
 import { NewPostComponent } from "src/app/pages/new-post/new-post.component";
 import { EditProfileComponent } from "src/app/pages/edit-profile/edit-profile.component";
 import { ProfileComponent } from "src/app/pages/profile/profile.component";
+import { FollowingRequestsComponent } from "src/app/pages/following-requests/following-requests.component";
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { ProfileComponent } from "src/app/pages/profile/profile.component";
     NewPostComponent,
     EditProfileComponent,
     ProfileComponent,
+    FollowingRequestsComponent
   ]
 })
 export class AdminLayoutModule {}
