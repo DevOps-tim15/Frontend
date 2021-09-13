@@ -44,6 +44,13 @@ export const ROUTES: RouteInfo[] = [
     class: "",
     role: "ADMIN"
   },
+  {
+    path: "/following-requests",
+    title: "Following requests",
+    icon: "icon-single-02",
+    class: "",
+    role: "REG_USER"
+  },
 ];
 
 @Component({
