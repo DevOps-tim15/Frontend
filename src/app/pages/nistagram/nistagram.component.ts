@@ -128,7 +128,8 @@ export class NistagramComponent implements OnInit {
             } 
             break; 
             case "/profile":
-            {      
+            if (this.isLoggedIn()) {
+              this.disabled = false;
               this.postService.search(this.searchTerm).subscribe(
                 user => {
                   console.log(user); 
@@ -139,8 +140,22 @@ export class NistagramComponent implements OnInit {
                 error => {
                   this.toastr.error(error.error);
                 }
-              )
-            }              
+              );
+            } else {
+              this.disabled = true;
+              this.postService.search(this.searchTerm).subscribe(
+                user => {
+                  console.log(user); 
+                  this.user = user;
+                  this.showProfile = true;
+                  this.posts = user.postedPhotos;
+                },
+                error => {
+                  this.toastr.error(error.error);
+                }
+              );
+              return null;
+            }             
             break;  
       default:
         break;
