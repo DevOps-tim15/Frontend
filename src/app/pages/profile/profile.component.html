@@ -13,7 +13,9 @@
                 <button class="btn">Unfollow</button>
             </ng-container>
             <ng-template #elseTemplate>
-                <button class="btn">Follow</button>
+                <ng-container *ngIf="user.isPrivate; else followTemplate">
+                    <button class="btn">Follow request</button>
+                </ng-container>
             </ng-template>
             <button class="btn">Mute</button>
             <button class="btn">Block</button>
