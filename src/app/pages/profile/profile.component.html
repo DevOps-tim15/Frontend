@@ -15,8 +15,9 @@
                 <ng-template #elseTemplate>
                     <button class="btn">Follow</button>
                 </ng-template>
-                <button class="btn">Mute</button>
-                <button class="btn" *ngIf="isLoggedIn() && user.isFollowing" (click)="block()">Block</button>
+                <button class="btn" *ngIf="user.isMuted && (user.isFollowing || !user.isPrivate)" (click)="unmute()">Unmute</button>
+                <button class="btn" *ngIf="!user.isMuted && (user.isFollowing || !user.isPrivate)" (click)="mute()">Mute</button>
+                <button class="btn" *ngIf="user.isFollowing || !user.isPrivate" (click)="block()">Block</button>
             </div>
         </div>
     </div>

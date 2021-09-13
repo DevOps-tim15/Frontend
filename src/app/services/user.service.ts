@@ -30,4 +30,15 @@ export class UserService {
 	let userUrl = this.baseUrl + "block/" + username;
 	return this.http.post(userUrl, { headers: this.headers}); 	
 	}
+
+  muteUser(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "mute/" + username;
+		return this.http.post(userUrl, { headers: this.headers}); 	
+  }
+
+  
+  unmuteUser(username: string): Observable<any> {
+	let userUrl = this.baseUrl + "unmute/" + username;
+	return this.http.post(userUrl, { headers: this.headers}); 	
+  }
 }

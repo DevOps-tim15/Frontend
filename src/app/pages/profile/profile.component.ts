@@ -38,17 +38,46 @@ export class ProfileComponent implements OnInit{
   }
 
   block() : void{
-      console.log(this.user.username);
-      this.userService.blockUser(this.user.username).subscribe(
-        message => {
-          this.toastr.success(message);
-          window.location.href="http://localhost:4200/#/nistagram"
-        },
-        error => {
-          console.log(error);
-          this.toastr.error(error.error);
-        }
-      )
+    console.log(this.user.username);
+    this.userService.blockUser(this.user.username).subscribe(
+      message => {
+        this.toastr.success("User successfully blocked!");
+        window.location.href="http://localhost:4200/#/nistagram"
+      },
+      error => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  
+  mute() : void{
+    console.log(this.user.username);
+    this.userService.muteUser(this.user.username).subscribe(
+      message => {
+        this.toastr.success("User successfully muted!");
+        window.location.href="http://localhost:4200/#/nistagram"
+      },
+      error => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  unmute() : void{
+    console.log(this.user.username);
+    this.userService.unmuteUser(this.user.username).subscribe(
+      message => {
+        this.toastr.success("User successfully unmuted!");
+        window.location.href="http://localhost:4200/#/nistagram"
+      },
+      error => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    )
   }
 
   follow() {
