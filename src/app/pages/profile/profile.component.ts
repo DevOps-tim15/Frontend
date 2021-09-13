@@ -86,6 +86,37 @@ export class ProfileComponent implements OnInit{
         if (followed) {
           this.user.isFollowing = true;
           this.toastr.success('Successfully followed!');
+        } else {
+          this.user.isRequested = true;
+          this.toastr.success('Successfully requested!');
+        }
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  unfollow() {
+    this.userService.unfollow(this.user.username).subscribe(
+      followed => {
+        if (followed) {
+          this.user.isFollowing = false;
+          this.toastr.success('Successfully unfollowed!');
+        }
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
+  }
+
+  removeRequest() {
+    this.userService.removeRequest(this.user.username).subscribe(
+      followed => {
+        if (followed) {
+          this.user.isRequested = false;
+          this.toastr.success('Successfully removed request!');
         }
       },
       error => {

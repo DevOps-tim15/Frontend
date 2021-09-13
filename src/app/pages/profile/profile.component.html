@@ -10,10 +10,15 @@
             <p *ngIf="user.biography" style="text-align: center;">Biography: {{user.biography}}</p>
             <div *ngIf="isLoggedIn() && !user.isOwner" class="card-body">
                 <ng-container *ngIf="user.isFollowing; else elseTemplate">
-                    <button class="btn">Unfollow</button>
+                    <button class="btn" (click) = "unfollow()">Unfollow</button>
                 </ng-container>
                 <ng-template #elseTemplate>
-                    <button class="btn">Follow</button>
+                    <ng-container *ngIf="!user.isPrivate || !user.isRequested; else elsePrivateTemplate">
+                        <button class="btn" (click) = "follow()">Follow</button>
+                    </ng-container>
+                </ng-template>
+                <ng-template #elsePrivateTemplate>
+                    <button class="btn btn-light" (click) = "removeRequest()">Requested</button>
                 </ng-template>
                 <button class="btn" *ngIf="user.isMuted && (user.isFollowing || !user.isPrivate)" (click)="unmute()">Unmute</button>
                 <button class="btn" *ngIf="!user.isMuted && (user.isFollowing || !user.isPrivate)" (click)="mute()">Mute</button>

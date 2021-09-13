@@ -23,22 +23,31 @@ export class UserService {
 
 	follow(username: string): Observable<any> {
 		let userUrl = this.baseUrl + "follow/" + username;
-		return this.http.get(userUrl, { headers: this.headers }) ;
+		return this.http.get(userUrl, { headers: this.headers });
 	}
 
-  blockUser(username: string): Observable<any> {
-	let userUrl = this.baseUrl + "block/" + username;
-	return this.http.post(userUrl, { headers: this.headers}); 	
+	unfollow(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "unfollow/" + username;
+		return this.http.get(userUrl, { headers: this.headers });
 	}
 
-  muteUser(username: string): Observable<any> {
+	blockUser(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "block/" + username;
+		return this.http.post(userUrl, { headers: this.headers });
+	}
+
+	muteUser(username: string): Observable<any> {
 		let userUrl = this.baseUrl + "mute/" + username;
-		return this.http.post(userUrl, { headers: this.headers}); 	
-  }
+		return this.http.post(userUrl, { headers: this.headers });
+	}
 
-  
-  unmuteUser(username: string): Observable<any> {
-	let userUrl = this.baseUrl + "unmute/" + username;
-	return this.http.post(userUrl, { headers: this.headers}); 	
-  }
+	unmuteUser(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "unmute/" + username;
+		return this.http.post(userUrl, { headers: this.headers });
+	}
+
+	removeRequest(username: string): Observable<any> {
+		let userUrl = this.baseUrl + "removeRequest/" + username;
+		return this.http.get(userUrl, { headers: this.headers });
+	}
 }
