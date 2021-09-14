@@ -5,9 +5,11 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
+import { TypeaheadModule } from "ngx-type-ahead";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule],
+  imports: [CommonModule, RouterModule, NgbModule, TypeaheadModule, FormsModule],
   declarations: [NavbarComponent, SidebarComponent],
   exports: [NavbarComponent, SidebarComponent]
 })

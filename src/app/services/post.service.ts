@@ -26,6 +26,11 @@ export class PostService {
 		return this.http.get(postUrl, { headers: this.headers }); 
 	}
 
+	getAllUsersForSearch(): Observable<any> {
+		let postUrl = this.baseUrl + "forSearch";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
 	getAllPostsByUser():  Observable<any> {
 		let postUrl = this.baseUrl + "userPosts";
 		return this.http.get(postUrl, { headers: this.headers }); 
@@ -49,5 +54,46 @@ export class PostService {
 	dislike(postId: number): Observable<any> {
 		let postUrl = this.baseUrl + "dislike/" + postId;
 		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	save(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "save/" + postId;
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	getAllLikedAndDisliked(): Observable<any> {
+		let postUrl = this.baseUrl + "likedAndDisliked";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	getAllSavedPosts(): Observable<any> {
+		let postUrl = this.baseUrl + "allSaved";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	report(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "report/" + postId;
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	uploadComment(comment: any): Observable<any> {
+		let postUrl = this.baseUrl + "comment";
+		return this.http.post(postUrl, comment, { headers: this.headers });
+	}
+
+	reportedPosts(): Observable<any> {
+		let postUrl = this.baseUrl + "reported";
+		return this.http.get(postUrl, { headers: this.headers }); 
+	}
+
+	removePost(postId: number): Observable<any> {
+		let postUrl = this.baseUrl + "remove/" + postId;
+		return this.http.delete(postUrl, { headers: this.headers }); 
+	}
+
+	search(username:string): Observable<any> {
+		let postUrl = this.baseUrl + "search/" + username;
+		return this.http.get(postUrl, { headers: this.headers }); 
+
 	}
 }
